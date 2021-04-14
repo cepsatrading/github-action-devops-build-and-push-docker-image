@@ -1,0 +1,32 @@
+name: 'Build and Push Docker Image to Artifactory'
+description: 'GitHub Composite Action to Build and Push Docker Image to Artifactory'
+inputs:
+  registry-user:
+    description: 'Registry User'
+    required: true
+  registry-password:
+    description: 'Registry Password'
+    required: true
+  repository-name:
+    description: 'Artifactory Virtual Repository name to upload package'
+    required: true
+  registry-url:
+    description: 'Artifactory Virtual Repository name to upload package'
+    required: true
+  image-name:
+    description: 'Docker Image Name'
+    required: true
+  image-tag:
+    description: 'Docker Image Tag'
+    required: true
+runs:
+  using: "composite"
+  steps:     
+  - id: build-and-push
+    run: |      
+      #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      docker login ${{ inputs.registry-url}}/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      docker build .
+      docker tag <IMAGE_ID> ${{ inputs.registry-url}}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+      docker push ${{ inputs.registry-url}}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+    shell: bash
