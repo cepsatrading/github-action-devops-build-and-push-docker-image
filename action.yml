@@ -32,7 +32,7 @@ runs:
       docker login https://cepsa.jfrog.io/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       #docker build -t example .
       echo "build"
-      docker build -t example . --tag ${{ inputs.image-tag }})
+      docker build -t example . --tag ${{ inputs.image-tag }}
       echo imageid=$(docker images -q ${{ inputs.image-name }})
       #echo "tag"
       #docker tag  latest example https://cepsa.jfrog.io/td-docker-local
