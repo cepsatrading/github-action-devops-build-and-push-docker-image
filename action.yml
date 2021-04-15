@@ -28,7 +28,7 @@ runs:
       #docker login ${{ inputs.registry-url }}/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       docker login https://cepsa.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       docker build -t ${{ inputs.image-name }} .
-      echo image-id=$(docker images -q ${{ inputs.image-name }})
-      docker tag $image-id ${{ inputs.registry-url }}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+      echo imageid=$(docker images -q ${{ inputs.image-name }})
+      docker tag $imageid ${{ inputs.registry-url }}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
       docker push ${{ inputs.registry-url }}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
     shell: bash
