@@ -19,6 +19,9 @@ inputs:
   image-tag:
     description: 'Docker Image Tag'
     required: true
+  image-version:
+    description: 'Docker Image Version'
+    required: true
 runs:
   using: "composite"
   steps:     
@@ -30,9 +33,10 @@ runs:
       #docker build -t example .
       echo "build"
       docker build -t example . --tag ${{ inputs.image-tag }})
-      #echo imageid=$(docker images -q ${{ inputs.image-name }})
+      echo imageid=$(docker images -q ${{ inputs.image-name }})
       #echo "tag"
       #docker tag  latest example https://cepsa.jfrog.io/td-docker-local
       echo "push"
-      docker push https://cepsa.jfrog.io/td-docker-local
+      #docker push https://cepsa.jfrog.io/td-docker-local
+      docker push https://cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }})
     shell: bash
