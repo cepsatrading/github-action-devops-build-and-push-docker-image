@@ -30,7 +30,7 @@ runs:
       docker build -t example .
       #echo imageid=$(docker images -q ${{ inputs.image-name }})
       echo "tag"
-      docker tag  latest example https://cepsa.jfrog.io/td-docker-local
+      #docker tag  latest example https://cepsa.jfrog.io/td-docker-local
       echo "push"
       docker push https://cepsa.jfrog.io/td-docker-local
     shell: bash
