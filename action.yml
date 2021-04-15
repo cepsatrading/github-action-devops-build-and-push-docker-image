@@ -25,8 +25,9 @@ runs:
   - id: build-and-push
     run: |      
       #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker login ${{ inputs.registry-url}}/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker build .
-      docker tag <IMAGE_ID> ${{ inputs.registry-url}}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
-      docker push ${{ inputs.registry-url}}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+      docker login ${{ inputs.registry-url }}/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      docker build -t ${{ inputs.image-name }} .
+      image-id=$(docker images -q ${{ inputs.image-name }})
+      docker tag $image-id ${{ inputs.registry-url }}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+      docker push ${{ inputs.registry-url }}/${{ inputs.repository-name }}:${{ inputs.image-tag }}
     shell: bash
