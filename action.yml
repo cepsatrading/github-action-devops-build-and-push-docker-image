@@ -29,6 +29,6 @@ runs:
       docker login https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       docker build -t ${{ inputs.image-name }} .
       echo imageid=$(docker images -q ${{ inputs.image-name }})
-      docker tag $imageid https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+      docker tag $imageid ${{ inputs.image-name }}:${{ inputs.image-tag }}
       docker push https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }}
     shell: bash
