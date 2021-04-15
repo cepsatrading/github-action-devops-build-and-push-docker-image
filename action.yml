@@ -27,8 +27,10 @@ runs:
       #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       #docker login ${{ inputs.registry-url }}/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       docker login https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker build -t ${{ inputs.image-name }} .
+      docker build -t example .
       #echo imageid=$(docker images -q ${{ inputs.image-name }})
-      #docker tag  ${{ inputs.image-name }} ${{ inputs.image-name }}:${{ inputs.image-tag }}
-      docker push https://cepsa.jfrog.io/td-docker-local/${{ inputs.image-name }}
+      echo "tag"
+      docker tag  latest example https://cepsa.jfrog.io/td-docker-local
+      echo "push"
+      docker push https://cepsa.jfrog.io/td-docker-local
     shell: bash
