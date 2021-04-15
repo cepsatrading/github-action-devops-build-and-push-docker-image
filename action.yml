@@ -30,5 +30,5 @@ runs:
       docker build -t ${{ inputs.image-name }} .
       echo imageid=$(docker images -q ${{ inputs.image-name }})
       #docker tag $imageid https://cepsa.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }}:${{ inputs.image-tag }}
-      docker push https://cepsa.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }}:${{ inputs.image-tag }}
+      docker push https://cepsa.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }}:latest
     shell: bash
