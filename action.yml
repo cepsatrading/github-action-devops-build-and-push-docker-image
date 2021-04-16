@@ -38,6 +38,8 @@ runs:
       #docker tag  latest example https://cepsa.jfrog.io/td-docker-local
       echo "push"
       #docker push https://cepsa.jfrog.io/td-docker-local
-      docker image ls
-      docker push https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      #docker image ls
+      #docker push https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      echo https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      docker push https://cepsa.jfrog.io/api/docker/td-docker-local/example:0.1
     shell: bash
