@@ -27,18 +27,23 @@ runs:
   steps:     
   - id: build-and-push
     run: |      
+      echo "LOGIN"
       #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      #docker login https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker login https://cepsa.jfrog.io/api/docker/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      #docker build -t example .
-      echo "build"
-      docker build -t example . --tag ${{ inputs.image-tag }}
+      docker login https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      #docker login https://cepsa.jfrog.io/api/docker/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      
+      echo "BUILD"
+      docker build -t ${{ inputs.image-name }}) . --tag ${{ inputs.image-tag }}
       echo imageid=$(docker images -q ${{ inputs.image-name }})
-      #echo "tag"
-      docker tag  example cepsa.jfrog.io/api/docker/td-docker-local/example:latest
+      
+      #echo "TAG"
+      #docker tag  example cepsa.jfrog.io/api/docker/td-docker-local/example:latest
+      docker tag  example cepsa.jfrog.io/td-docker-local/example:latest
       docker image ls
-      echo "push"
+      
+      echo "PUSH"
       #docker push https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
       #echo https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker push cepsa.jfrog.io/api/docker/td-docker-local/example
+      #docker push cepsa.jfrog.io/api/docker/td-docker-local/example
+      docker push cepsa.jfrog.io/td-docker-local/example
     shell: bash
