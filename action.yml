@@ -29,7 +29,7 @@ runs:
     run: |      
       #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       #docker login https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker login https://cepsa.jfrog.io/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      docker login https://cepsa.jfrog.io/api/docker/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       #docker build -t example .
       echo "build"
       docker build -t example . --tag ${{ inputs.image-tag }}
@@ -39,5 +39,5 @@ runs:
       echo "push"
       #docker push https://cepsa.jfrog.io/td-docker-local
       docker image ls
-      docker push https://cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      docker push https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
     shell: bash
