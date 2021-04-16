@@ -37,7 +37,7 @@ runs:
       echo imageid=$(docker images -q ${{ inputs.image-name }})
       
       #echo "TAG"
-      docker tag  $imageid cepsa.jfrog.io/td-docker-local/${{ inputs.image-name }}:latest
+      docker tag  example cepsa.jfrog.io/td-docker-local/${{ inputs.image-name }}:latest
       docker image ls
       
       echo "PUSH"
