@@ -29,7 +29,7 @@ runs:
     run: |      
       echo "LOGIN"
       #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker login https://cepsa.jfrog.io/td-docker-local/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       #docker login https://cepsa.jfrog.io/api/docker/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       
       echo "BUILD"
