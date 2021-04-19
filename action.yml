@@ -26,23 +26,18 @@ runs:
   using: "composite"
   steps:     
   - id: build-and-push
-    run: |      
-      echo "LOGIN"
+    run: |  
+    
+      #LOGIN
       #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      #docker login https://cepsa.jfrog.io/api/docker/td-docker-local/ -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      
-      echo "BUILD"
+    
+      #BUILD
       docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
-      echo imageid=$(docker images -q ${{ inputs.image-name }}
       
-      #echo "TAG"
-      docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/td-docker-local/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker image ls
+      #TAG
+      docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
       
-      echo "PUSH"
-      #docker push https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      #echo https://cepsa.jfrog.io/api/docker/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      #docker push cepsa.jfrog.io/api/docker/td-docker-local/example
-      docker push cepsa.jfrog.io/td-docker-local/${{ inputs.image-name }}:${{ inputs.image-version }}
+      #PUSH
+      docker push cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
     shell: bash
