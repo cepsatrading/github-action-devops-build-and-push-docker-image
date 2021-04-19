@@ -34,7 +34,7 @@ runs:
       
       echo "BUILD"
       docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
-      echo imageid=$(docker images -q ${{ inputs.image-name }})
+      echo imageid=$(docker images -q ${{ inputs.image-name }}
       
       #echo "TAG"
       docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/td-docker-local/${{ inputs.image-name }}:${{ inputs.image-version }}
