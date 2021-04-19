@@ -29,15 +29,17 @@ runs:
     run: |  
     
       #LOGIN
-      #docker login https://cepsaregistry.jfrog.io/ui/repos/tree/General/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      docker login cepsaregistry.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+      #docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
     
       #BUILD
       docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
       
       #TAG
-      docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
       
       #PUSH
-      docker push cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      #docker push cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
     shell: bash
