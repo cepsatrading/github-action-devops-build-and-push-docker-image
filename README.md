@@ -10,6 +10,10 @@ The `github-action-devops-build-and-push-docker-image` Github Action will build 
 | `image-tag` | Tag to include in the image | :heavy_check_mark: | |
 | `image-version` | Image version | :heavy_check_mark: | |
 
+## Requirements
+
+* `Dockerfile` file must exist in the root of the project.
+
 ## Usage
 
 ```yaml
