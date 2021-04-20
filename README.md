@@ -5,10 +5,10 @@ The `github-action-devops-build-and-push-docker-image` Github Action will build 
 
 | Name | Description | Required |Default |
 | --- | --- | --- | --- |
-| `repository-name` | Pylint and Bandit analysis source code base path | :heavy_check_mark: | |
-| `image-name` | Pylint and Bandit analysis source code base path | :heavy_check_mark: | |
-| `image-tag` | Pylint and Bandit analysis source code base path | :heavy_check_mark: | |
-| `image-version` | Pylint and Bandit analysis source code base path | :heavy_check_mark: | |
+| `repository-name` | Registry repository where the image will be uploaded | :heavy_check_mark: | |
+| `image-name` | Name of the image to upload | :heavy_check_mark: | |
+| `image-tag` | Tag to include in the image | :heavy_check_mark: | |
+| `image-version` | Image version | :heavy_check_mark: | |
 
 ## Usage
 
