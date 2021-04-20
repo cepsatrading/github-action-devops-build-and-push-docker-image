@@ -1,7 +1,6 @@
-# Run Python Tests and Code Analysis GitHub Action  1.0.0
+# Build and Push Docker image in Registry
 
-The `github-action-devops-python-testing` Github Action will run your tests with **Tox and generate coverage, pylint and bandit reports.**
-
+The `github-action-devops-build-and-push-docker-image` Github Action will build and push a Docker image in Registry
 ## Inputs
 
 | Name | Description | Required |Default |
