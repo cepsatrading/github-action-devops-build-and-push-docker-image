@@ -44,6 +44,6 @@ runs:
       #PUSH
       #docker push cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
       docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:latest
+      docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}
       
     shell: bash
