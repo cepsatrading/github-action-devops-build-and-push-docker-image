@@ -38,6 +38,7 @@ runs:
       #TAG
       #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
       docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+      docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:latest
       
       docker image ls
       
