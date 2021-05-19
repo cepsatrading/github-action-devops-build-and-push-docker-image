@@ -37,6 +37,7 @@ runs:
     #      BUILD_ARGS="--build-args ${{ inputs.build-args }}" >> $GITHUB_ENV
     #    else
     #      BUILD_ARGS="" >> $GITHUB_ENV
+    #    fi
     #  shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
@@ -44,6 +45,7 @@ runs:
           PATH="-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
         else
           PATH="." >> $GITHUB_ENV
+        fi
       shell: bash
   
     - id: build-and-push
