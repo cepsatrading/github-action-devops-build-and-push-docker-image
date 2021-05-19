@@ -44,10 +44,10 @@ runs:
         if [[ -z ${{ inputs.path-docker-file }} ]]; then
           echo "DOCKERPATH=-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
         else
-          echo "DOCKERPATH=\".\"" >> $GITHUB_ENV
+          echo "DOCKERPATH=" >> $GITHUB_ENV
         fi
-        echo "PATH ALMACENADO: ${{ inputs.path-docker-file }}"
-        echo "PATH: $PATH"
+        echo "DOCKERPATH ALMACENADO: ${{ inputs.path-docker-file }}"
+        echo "DOCKERPATH: $DOCKERPATH"
       shell: bash
   
     - id: build-and-push
