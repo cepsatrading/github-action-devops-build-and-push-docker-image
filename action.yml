@@ -62,6 +62,8 @@ runs:
         #BUILD
         #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
         echo "docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}"
+        pwd
+        ls
         docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}
 
         #TAG
