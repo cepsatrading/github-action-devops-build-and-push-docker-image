@@ -15,23 +15,7 @@ The `github-action-devops-build-and-push-docker-image` Github Action will build 
 
 ## Usage
 
-```yaml
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build and Push Docker Image to Artifactory
-      uses: cepsadigital/github-action-devops-build-and-push-docker-image@master
-      with:
-        registry-user: ${{ secrets.TD_ARTIFACTORY_REG_USER }}
-        registry-password: ${{ secrets.TD_ARTIFACTORY_REG_TOKEN }}
-        repository-name: repository-name
-        image-name: image-name
-        image-tag: image-tag
-        image-version: image-version
-  
+```yaml  
 name: Build and Push Docker Image to Artifactory Workflow
 
 on:
