@@ -41,12 +41,12 @@ runs:
     #  shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
-        if [ ${{ github.event.inputs.path-docker-file }} ]; then
+        if [ ${{ inputs.path-docker-file }} ]; then
           PATH="-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
         else
           PATH="." >> $GITHUB_ENV
         fi
-        echo "PATH ALMACENADO: ${{ github.event.inputs.path-docker-file }}"
+        echo "PATH ALMACENADO: ${{ inputs.path-docker-file }}"
         echo "PATH: $PATH"
       shell: bash
   
