@@ -25,14 +25,27 @@ inputs:
   build-args:
     description: 'Docker Build Arguments'
     required: false
+  path-docker-file:
+    description: 'Docker Build Arguments'
+    required: false
 runs:
   using: "composite"
   steps:     
     - name: Docker build with Args
-      if: ${{ github.event.inputs.build-args }}
       run: | 
-		    echo "DOCKER_BUILD_COMMAND=docker build -t ${{ inputs.image-name }} --build-args ${{ inputs.build-args }} . --tag ${{ inputs.image-tag }}" >> $GITHUB_ENV
-        shell: bash    
+        if [ ${{ github.event.inputs.build-args }} ]; then
+          BUILD_ARGS="--build-args ${{ inputs.build-args }}" >> $GITHUB_ENV
+        else
+          BUILD_ARGS="" >> $GITHUB_ENV
+      shell: bash
+    - name: Docker build with Dockerfile in other path     
+      run: | 
+        if [] ${{ github.event.inputs.path-docker-file }} ]; then
+          PATH="-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
+        else
+          PATH="." >> $GITHUB_ENV
+      shell: bash
+  
     - id: build-and-push
       run: |  
       
@@ -41,8 +54,9 @@ runs:
         #docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       
         #BUILD
-        docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
-        
+        #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
+        docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} ${{ env.PATH }} --tag ${{ inputs.image-tag }}
+
         #TAG
         #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
         docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
