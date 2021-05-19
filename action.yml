@@ -46,6 +46,7 @@ runs:
         else
           PATH="." >> $GITHUB_ENV
         fi
+        echo "PATH ALMACENADO: ${{ github.event.inputs.path-docker-file }}"
         echo "PATH: $PATH"
       shell: bash
   
