@@ -49,7 +49,7 @@ runs:
           echo "DOCKERPATH=" >> $GITHUB_ENV
         fi
         echo "DOCKERPATH ALMACENADO: ${{ inputs.path-docker-file }}"
-        echo "DOCKERPATH: ${{ env.DOCKERPATH }}"
+        echo "DOCKERPATH: $DOCKERPATH - ${{ env.DOCKERPATH }}"
       shell: bash
   
     - id: build-and-push
@@ -62,7 +62,7 @@ runs:
         #BUILD
         #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
         echo "docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} $DOCKERPATH --tag ${{ inputs.image-tag }}"
-        docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}
+        docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} $DOCKERPATH --tag ${{ inputs.image-tag }}
 
         #TAG
         #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
