@@ -46,6 +46,7 @@ runs:
         else
           PATH="." >> $GITHUB_ENV
         fi
+        echo "PATH: $PATH"
       shell: bash
   
     - id: build-and-push
@@ -57,6 +58,7 @@ runs:
       
         #BUILD
         #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
+        echo "docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} ${{ env.PATH }} --tag ${{ inputs.image-tag }}"
         docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} ${{ env.PATH }} --tag ${{ inputs.image-tag }}
 
         #TAG
