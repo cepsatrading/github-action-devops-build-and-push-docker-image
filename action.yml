@@ -28,12 +28,11 @@ inputs:
 runs:
   using: "composite"
   steps:     
-    - name: Credentials to DEV Environment
-      if: ${{ github.event.inputs.environment=='dev' }}
+    - name: Docker build with Args
+      if: ${{ github.event.inputs.build-args }}
       run: | 
-          echo "AKID=${{ secrets.TR_GITHUB_DEV_AK }}" >> $GITHUB_ENV
-          echo "SKID=${{ secrets.TR_GITHUB_DEV_SK }}">> $GITHUB_ENV
-          shell: bash    
+		    echo "DOCKER_BUILD_COMMAND=docker build -t ${{ inputs.image-name }} --build-args ${{ inputs.build-args }} . --tag ${{ inputs.image-tag }}" >> $GITHUB_ENV
+        shell: bash    
     - id: build-and-push
       run: |  
       
