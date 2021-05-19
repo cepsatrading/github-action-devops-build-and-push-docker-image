@@ -62,7 +62,7 @@ runs:
         #BUILD
         #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
         echo ~
-        docker build -t ${{ inputs.image-name }} -f /iac/Dockerfile
+        docker build -t ${{ inputs.image-name }} -f ~/wido/wido/iac/Dockerfile
         #echo "docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}"
         #docker build -t ${{ inputs.image-name }} -f iac/ --tag ${{ inputs.image-tag }}
 
