@@ -32,11 +32,11 @@ runs:
   using: "composite"
   steps:     
     #- name: Docker build with Args
-    - run: | 
-        if [ ${{ github.event.inputs.build-args }} ]; then
-          BUILD_ARGS="--build-args ${{ inputs.build-args }}" >> $GITHUB_ENV
-        else
-          BUILD_ARGS="" >> $GITHUB_ENV
+    #- run: | 
+    #    if [ ${{ github.event.inputs.build-args }} ]; then
+    #      BUILD_ARGS="--build-args ${{ inputs.build-args }}" >> $GITHUB_ENV
+    #    else
+    #      BUILD_ARGS="" >> $GITHUB_ENV
       shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
