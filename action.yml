@@ -40,7 +40,7 @@ runs:
       shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
-        if [] ${{ github.event.inputs.path-docker-file }} ]; then
+        if [ ${{ github.event.inputs.path-docker-file }} ]; then
           PATH="-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
         else
           PATH="." >> $GITHUB_ENV
