@@ -64,7 +64,7 @@ runs:
         echo "docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}"
         pwd
         ls
-        docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}
+        docker build -t ${{ inputs.image-name }} /home/runner/work/wido/wido/iac/Dockerfile --tag ${{ inputs.image-tag }}
 
         #TAG
         #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
