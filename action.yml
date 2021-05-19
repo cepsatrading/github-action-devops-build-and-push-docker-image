@@ -37,7 +37,7 @@ runs:
     #      BUILD_ARGS="--build-args ${{ inputs.build-args }}" >> $GITHUB_ENV
     #    else
     #      BUILD_ARGS="" >> $GITHUB_ENV
-      shell: bash
+    #  shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
         if [ ${{ github.event.inputs.path-docker-file }} ]; then
