@@ -42,9 +42,9 @@ runs:
     #- name: Docker build with Dockerfile in other path     
     - run: | 
         if [[ -z ${{ inputs.path-docker-file }} ]]; then
-          DOCKERPATH="-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
+          echo "DOCKERPATH=-f ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
         else
-          DOCKERPATH="." >> $GITHUB_ENV
+          echo "DOCKERPATH=\".\"" >> $GITHUB_ENV
         fi
         echo "PATH ALMACENADO: ${{ inputs.path-docker-file }}"
         echo "PATH: $PATH"
