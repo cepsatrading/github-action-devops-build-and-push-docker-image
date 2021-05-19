@@ -47,7 +47,7 @@ runs:
           echo "DOCKERPATH=" >> $GITHUB_ENV
         fi
         echo "DOCKERPATH ALMACENADO: ${{ inputs.path-docker-file }}"
-        echo "DOCKERPATH: $DOCKERPATH"
+        echo "DOCKERPATH: ${{ env.DOCKERPATH }}"
       shell: bash
   
     - id: build-and-push
