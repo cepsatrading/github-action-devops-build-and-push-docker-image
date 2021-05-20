@@ -28,6 +28,7 @@ inputs:
   path-dockerfile:
     description: 'Docker Build Arguments'
     required: false
+    default: ''
 runs:
   using: "composite"
   steps:     
