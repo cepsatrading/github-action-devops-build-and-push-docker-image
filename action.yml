@@ -38,9 +38,9 @@ runs:
         echo "-----------------------"
         echo "${{ inputs.build-arg }}"
         echo "-----------------------"
-        
-        if [[ ${{ inputs.build-arg }} != "" ]]; then
-          echo "BUILD_ARGS=${{ inputs.build-arg }}" >> $GITHUB_ENV
+
+        if [ ${{ inputs.build-arg }} ]; then
+          echo "BUILD_ARGS=--build-arg ${{ inputs.build-arg }}" >> $GITHUB_ENV
         else
           echo "BUILD_ARGS=" >> $GITHUB_ENV
         fi
