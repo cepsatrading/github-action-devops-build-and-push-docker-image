@@ -35,7 +35,7 @@ runs:
   steps:     
     - name: Docker build with Args
       run: | 
-        if [ ${{ inputs.build-arg }} ]; then
+        if [[ ${{ inputs.build-arg }} ]]; then
           echo "BUILD_ARGS=${{ inputs.build-arg }}" >> $GITHUB_ENV
         else
           echo "BUILD_ARGS=" >> $GITHUB_ENV
