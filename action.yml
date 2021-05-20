@@ -25,6 +25,7 @@ inputs:
   build-arg:
     description: 'Docker Build Arguments'
     required: false
+    default: ''
   path-dockerfile:
     description: 'Docker Build Arguments'
     required: false
@@ -39,6 +40,7 @@ runs:
         else
           echo "BUILD_ARGS=" >> $GITHUB_ENV
         fi
+        echo "${{ inputs.build-arg }}"
       shell: bash
     - name: Docker build with dockerfile in other path
       run: | 
