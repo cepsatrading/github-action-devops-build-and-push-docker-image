@@ -43,7 +43,7 @@ runs:
     - run: | 
         if [[ ${{ inputs.path-docker-file }} != "" ]]; then
           echo "ENTRO IF"
-          echo "DOCKERPATH=-f- ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
+          echo "DOCKERPATH= ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
         else
           echo "ENTRO ELSE"
           echo "DOCKERPATH=." >> $GITHUB_ENV
@@ -61,10 +61,8 @@ runs:
       
         #BUILD
         #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
-        echo ~
-        docker build -t ${{ inputs.image-name }} -f ~/wido/wido/iac/Dockerfile
         #echo "docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}"
-        #docker build -t ${{ inputs.image-name }} -f iac/ --tag ${{ inputs.image-tag }}
+        docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}
 
         #TAG
         #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
