@@ -25,7 +25,7 @@ inputs:
   build-args:
     description: 'Docker Build Arguments'
     required: false
-  path-docker-file:
+  path-dockerfile:
     description: 'Docker Build Arguments'
     required: false
 runs:
@@ -41,14 +41,14 @@ runs:
     #  shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
-        if [[ ${{ inputs.path-docker-file }} != "" ]]; then
+        if [[ ${{ inputs.path-dockerfile }} != "" ]]; then
           echo "ENTRO IF"
-          echo "DOCKERPATH= ${{ inputs.path-docker-file }}" >> $GITHUB_ENV
+          echo "DOCKERPATH=-f ${{ inputs.path-dockerfile }}" >> $GITHUB_ENV
         else
           echo "ENTRO ELSE"
-          echo "DOCKERPATH=." >> $GITHUB_ENV
+          echo "DOCKERPATH=" >> $GITHUB_ENV
         fi
-        echo "DOCKERPATH ALMACENADO: ${{ inputs.path-docker-file }}"
+        echo "DOCKERPATH ALMACENADO: ${{ inputs.path-dockerfile }}"
         echo "DOCKERPATH: $DOCKERPATH - ${{ env.DOCKERPATH }}"
       shell: bash
   
@@ -62,7 +62,7 @@ runs:
         #BUILD
         #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
         #echo "docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}"
-        docker build -t ${{ inputs.image-name }} ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}
+        docker build -t ${{ inputs.image-name }} . ${{ env.DOCKERPATH }} --tag ${{ inputs.image-tag }}
 
         #TAG
         #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
