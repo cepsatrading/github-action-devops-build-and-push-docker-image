@@ -39,13 +39,13 @@ runs:
         echo "${{ inputs.build-arg }}"
         echo "-----------------------"
 
-        if [ ${{ inputs.build-arg }} ]; then
+        if [ "${{ inputs.build-arg }}" ]; then
           echo "BUILD_ARGS=--build-arg ${{ inputs.build-arg }}" >> $GITHUB_ENV
         else
           echo "BUILD_ARGS=" >> $GITHUB_ENV
         fi
-        echo "${{ inputs.build-arg }}"
       shell: bash
+
     - name: Docker build with dockerfile in other path
       run: | 
         if [ ${{ inputs.path-dockerfile }} ]; then
