@@ -42,7 +42,7 @@ runs:
     #  shell: bash
     #- name: Docker build with Dockerfile in other path     
     - run: | 
-        if [[ ${{ inputs.path-dockerfile }} != "" ]]; then
+        if [[ ${{ inputs.path-dockerfile }} ]]; then
           echo "ENTRO IF"
           echo "DOCKERPATH=-f ${{ inputs.path-dockerfile }}" >> $GITHUB_ENV
         else
