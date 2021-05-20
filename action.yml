@@ -43,7 +43,7 @@ runs:
     - run: | 
         if [[ ${{ inputs.path-dockerfile }} != "" ]]; then
           echo "ENTRO IF"
-          echo "DOCKERPATH= ${{ inputs.path-dockerfile }}" >> $GITHUB_ENV
+          echo "DOCKERPATH=${{ inputs.path-dockerfile }}" >> $GITHUB_ENV
         else
           echo "ENTRO ELSE"
           echo "DOCKERPATH=." >> $GITHUB_ENV
