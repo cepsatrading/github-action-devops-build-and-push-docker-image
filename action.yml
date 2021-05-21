@@ -22,29 +22,53 @@ inputs:
   image-version:
     description: 'Docker Image Version'
     required: true
+  build-arg:
+    description: 'Docker Build Arguments'
+    required: false
+    default: ''
+  path-dockerfile:
+    description: 'Docker Build Arguments'
+    required: false
+    default: ''
 runs:
   using: "composite"
   steps:     
-  - id: build-and-push
-    run: |  
-    
-      #LOGIN
-      docker login cepsaregistry.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-      #docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
-    
-      #BUILD
-      docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
+    - name: Docker build with Args
+      run: | 
+        if [ "${{ inputs.build-arg }}" ]; then
+          echo "BUILD_ARGS=--build-arg ${{ inputs.build-arg }}" >> $GITHUB_ENV
+        else
+          echo "BUILD_ARGS=" >> $GITHUB_ENV
+        fi
+      shell: bash
+
+    - name: Docker build with dockerfile in other path
+      run: | 
+        if [ ${{ inputs.path-dockerfile }} ]; then
+          echo "DOCKERPATH=-f ${{ inputs.path-dockerfile }}" >> $GITHUB_ENV
+        else
+          echo "DOCKERPATH=" >> $GITHUB_ENV
+        fi
+      shell: bash
+  
+    - id: build-and-push
+      run: |  
       
-      #TAG
-      #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:latest
+        #LOGIN
+        docker login cepsaregistry.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
+        #docker login https://cepsa.jfrog.io/${{ inputs.repository-name }} -u ${{ inputs.registry-user }} -p ${{ inputs.registry-password }}
       
-      docker image ls
-      
-      #PUSH
-      #docker push cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
-      docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}
-      
-    shell: bash
+        #BUILD
+        #docker build -t ${{ inputs.image-name }} . --tag ${{ inputs.image-tag }}
+        docker build -t ${{ inputs.image-name }} ${{ env.BUILD_ARGS }} . ${{ env.DOCKERPATH }} 
+
+        #TAG
+        #docker tag  ${{ inputs.image-name }} cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+        docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+        docker tag  ${{ inputs.image-name }} cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:latest
+        
+        #PUSH
+        #docker push cepsa.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+        docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}:${{ inputs.image-version }}
+        docker push cepsaregistry.jfrog.io/${{ inputs.repository-name }}/${{ inputs.image-name }}
+      shell: bash
