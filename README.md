@@ -8,6 +8,8 @@ The `github-action-devops-build-and-push-docker-image` Github Action will build 
 | `repository-name` | Registry repository where the image will be uploaded | :heavy_check_mark: | |
 | `image-name` | Name of the image to upload | :heavy_check_mark: | |
 | `image-version` | Image version | :heavy_check_mark: | |
+| `path-dockerfile` | Other Dockerfile Path | :heavy_check_mark: | |
+| `build-arg` | Build Arguments | :heavy_check_mark: | |
 
 ## Requirements
 
