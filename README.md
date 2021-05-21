@@ -13,7 +13,7 @@ The `github-action-devops-build-and-push-docker-image` Github Action will build 
 
 ## Requirements
 
-* `Dockerfile` file must exist in the root of the project.
+* `Dockerfile` file must exist in the root of the project. In the event that the Dockerfile file is in another path, the input "path-dockerfile" must be used with the path where the file is located.
 
 ## Usage
 
@@ -44,7 +44,7 @@ jobs:
         image-tag: "${{ steps.time.outputs.time }}"
         image-version: image-version-${{ steps.time.outputs.time }}
         # Optinals inputs
-        # path-dockerfile: i.e iac/Dockerfile
+        # path-dockerfile: (i.e) iac/Dockerfile
         # Considerations: If you only have to introduce an argument, you only have to put the argument. In case there are more arguments, you must include "--build-arg" before each argument.
         # build-arg: some_variable_name_a=a_value --build-arg some_variable_name_b=b_value
 ```
