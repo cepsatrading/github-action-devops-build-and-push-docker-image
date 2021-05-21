@@ -8,8 +8,8 @@ The `github-action-devops-build-and-push-docker-image` Github Action will build 
 | `repository-name` | Registry repository where the image will be uploaded | :heavy_check_mark: | |
 | `image-name` | Name of the image to upload | :heavy_check_mark: | |
 | `image-version` | Image version | :heavy_check_mark: | |
-| `path-dockerfile` | Other Dockerfile Path | :heavy_check_mark: | |
-| `build-arg` | Build Arguments | :heavy_check_mark: | |
+| `path-dockerfile` | Other Dockerfile Path |  | |
+| `build-arg` | Build Arguments |  | |
 
 ## Requirements
 
@@ -43,6 +43,10 @@ jobs:
         image-name: image-name
         image-tag: "${{ steps.time.outputs.time }}"
         image-version: image-version-${{ steps.time.outputs.time }}
+        # Optinals inputs
+        # path-dockerfile: i.e iac/Dockerfile
+        # Considerations: If you only have to introduce an argument, you only have to put the argument. In case there are more arguments, you must include "--build-arg" before each argument.
+        # build-arg: some_variable_name_a=a_value --build-arg some_variable_name_b=b_value
 ```
 
 ## Contact
